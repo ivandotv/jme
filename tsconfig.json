@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "./.buildcache/lib.tsbuildinfo",
+    "declaration": true,
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "outDir": "./lib/",
+    "rootDir": "./src/",
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*.ts"]
+}

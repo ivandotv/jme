@@ -1,0 +1,7 @@
+node_modules
+/coverage
+/lib
+/.buildcache
+/.vscode/settings.json
+/scratch
+/.tmpDownload
