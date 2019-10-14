@@ -95,7 +95,7 @@
     "run-script-os": "^1.0.7",
     "standardx": "^5.0.0",
     "ts-jest": "^24.1.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.4"
   },
   "dependencies": {
     "chalk": "^2.4.2",
