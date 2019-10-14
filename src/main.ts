@@ -2,6 +2,13 @@ import { mergeFiles } from './mergeFiles'
 import { Command } from 'commander'
 import path from 'path'
 
+/**
+ * Entry point for the application
+ *
+ * @export
+ * @param {string[]} args
+ * @param {Command} program
+ */
 export function main(args: string[], program: Command): void {
   program
     .version('1.0.0')
@@ -22,18 +29,32 @@ export function main(args: string[], program: Command): void {
 
   // do the work
   const result = mergeFiles(
-    parseFilePathOptions(program.args),
+    resolveFilePathOptions(program.args),
     program.path,
     program.allowUndefined,
     program.override
   )
+  // write out the result
   console.log(result)
 }
 
+/**
+ * Normalize partial path options
+ *
+ * @param {string} paths
+ * @returns {string[]} Array of partial paths to be merged
+ */
 function parsePartialPathOptions(paths: string): string[] {
   return paths.split(',').map((path: string) => path.trim())
 }
 
-export function parseFilePathOptions(paths: string[]): string[] {
+/**
+ * Resolve file path options
+ *
+ * @export
+ * @param {string[]} paths
+ * @returns {string[]}
+ */
+export function resolveFilePathOptions(paths: string[]): string[] {
   return paths.map(p => path.resolve(p))
 }

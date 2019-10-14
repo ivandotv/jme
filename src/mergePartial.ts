@@ -7,6 +7,16 @@ import deepExtend = require('deep-extend')
 //TODO -root array is not supported yet
 //https://stackoverflow.com/questions/3833299/can-an-array-be-top-level-json-text
 
+/**
+ * Handle partially merging the files
+ *
+ * @export
+ * @param {FileData[]} mergeTargets target objects to be merged
+ * @param {string[]} mergePaths specific paths to be merged
+ * @param {boolean} [allowUndefined=false] allow undefined paths on target objects
+ * @param {boolean} [override=false] don't merge, override the paths on the target object (first object)
+ * @returns {*} Return merged object
+ */
 export function mergeFilesPartial(
   mergeTargets: FileData[],
   mergePaths: string[],
@@ -31,6 +41,15 @@ export function mergeFilesPartial(
   return result
 }
 
+/**
+ * Merge all partial paths in the target object
+ *
+ * @export
+ * @param {*} target
+ * @param {*} pathData paths to merge
+ * @param {string} rootProp  temp property name to hold the object
+ * @returns {*} modified target with the merged paths
+ */
 export function mergePathData(
   target: any,
   pathData: any,
@@ -46,6 +65,17 @@ export function mergePathData(
   return target
 }
 
+/**
+ * Setup paths to be merged
+ *
+ * @export
+ * @param {FileData[]} objectsToMerge objects to merge
+ * @param {string[]} objectPaths paths to merge
+ * @param {string} rootProp temp path propertiy
+ * @param {boolean} [allowUndefined=false] allow undefined paths
+ * @param {boolean} [firstFileCheck=false] allow undefined path on the target (first) object
+ * @returns {*}
+ */
 export function setupPathData(
   objectsToMerge: FileData[],
   objectPaths: string[],
