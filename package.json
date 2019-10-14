@@ -1,7 +1,7 @@
 {
-  "name": "jx",
+  "name": "jme",
   "version": "1.0.0",
-  "description": "Manipulate JSON from command line: extend, override.",
+  "description": "Fully or partially merge JSON objects from the command line",
   "main": "lib/index.js",
   "types": "lib/",
   "files": [
@@ -9,20 +9,24 @@
     "src"
   ],
   "bin": {
-    "jx": "lib/index.js"
+    "jme": "lib/index.js"
   },
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "build": "tsc",
+    "prepublishOnly": "npm run build && npm run test",
+    "build": "run-script-os",
+    "build:nix": "del lib && tsc && chmod a+x ./lib/index.js",
+    "build:win32": "del lib && tsc",
     "build:watch": "tsc --watch",
     "test": "jest --verbose --coverage --no-cache",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "ci:test": "jest --runInBand --reporters=default --reporters=jest-junit --coverage --coverageDirectory=coverage"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ivandotv/jx.git"
+    "url": "git+https://github.com/ivandotv/jm.git"
   },
   "keywords": [
     "json",
@@ -38,9 +42,9 @@
   "author": "Ivan Vlatkovic",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ivandotv/jx/issues"
+    "url": "https://github.com/ivandotv/jm/issues"
   },
-  "homepage": "https://github.com/ivandotv/jx#readme",
+  "homepage": "https://github.com/ivandotv/jm#readme",
   "jest": {
     "watchPlugins": [
       "jest-watch-typeahead/filename",
@@ -50,6 +54,27 @@
       "^.+\\.tsx?$": "ts-jest"
     }
   },
+  "jest-junit": {
+    "outputDirectory": "./reports/junit",
+    "outputName": "js-test-results.xml"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "tests/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
   "devDependencies": {
     "@types/deep-extend": "^0.4.31",
     "@types/jest": "^24.0.18",
@@ -57,9 +82,16 @@
     "@types/set-value": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^2.3.3",
     "@typescript-eslint/parser": "^2.3.3",
+    "del-cli": "^3.0.0",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.9",
     "jest": "^24.9.0",
     "jest-junit": "^8.0.0",
     "jest-watch-typeahead": "^0.4.0",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.18.2",
+    "run-script-os": "^1.0.7",
     "standardx": "^5.0.0",
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.3"
@@ -68,9 +100,6 @@
     "chalk": "^2.4.2",
     "commander": "^3.0.2",
     "deep-extend": "^0.6.0",
-    "eslint-config-prettier": "^6.4.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "prettier": "^1.18.2",
     "set-value": "^3.0.1",
     "undefsafe": "^2.0.2"
   }
