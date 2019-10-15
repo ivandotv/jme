@@ -1,7 +1,7 @@
-# JME CLI
+# JME - JSON MERGE CLI
 
 ![CircleCI](https://img.shields.io/circleci/build/github/ivandotv/jme/master)
-![Codecov](https://img.shields.io/codecov/c/github/ivandotv/jme)
+![Coveralls github](https://img.shields.io/coveralls/github/ivandotv/jme)
 ![NPM](https://img.shields.io/npm/l/jme)
 
 Fully or **partially** merge JSON files on the command line.
@@ -22,6 +22,8 @@ jme file-1.json file-2.json file-3.json > merged.json
 The first file is the target file however, files are never modified, rather the merge result is written to the terminal.
 
 You can pass in any number of files to be merged.
+
+Internally [deep-extend](https://www.npmjs.com/package/deep-extend) package is used for merging objects.
 
 ## Partial merging
 
