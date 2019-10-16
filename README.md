@@ -19,7 +19,7 @@ jme file-1.json file-2.json file-3.json > merged.json
 ```
 
 `file-3.json` will be merged with `file-2.json` and the result will be merged with `file-1.json`
-The first file is the target file however, files are never modified, rather the merge result is written to the terminal.
+The first file is the target file however, files are never modified, rather the merge result is sent to standard out.
 
 You can pass in any number of files to be merged.
 
