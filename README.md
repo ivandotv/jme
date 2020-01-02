@@ -1,10 +1,10 @@
 # JME CLI
 
-![CircleCI](https://img.shields.io/circleci/build/github/ivandotv/jme/master)
-![Codecov](https://img.shields.io/codecov/c/github/ivandotv/jme)
-![NPM](https://img.shields.io/npm/l/jme)
+[![CircleCI](https://img.shields.io/circleci/build/github/ivandotv/jme/master)](https://circleci.com/gh/ivandotv/jme)
+[![Codecov](https://img.shields.io/codecov/c/github/ivandotv/jme)](https://codecov.io/gh/ivandotv/jme)
+[![NPM](https://img.shields.io/npm/l/jme)](https://www.npmjs.com/package/jme)
 
-Fully or **partially** merge JSON files on the command line.
+Fully or **partially** merge JSON files via the command line.
 
 ## Installation
 
