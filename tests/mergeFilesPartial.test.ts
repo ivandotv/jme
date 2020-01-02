@@ -6,10 +6,10 @@ let obj1: any, obj2: any, obj3: any
 beforeEach(() => {
   obj1 = {
     objData: {
-      p1: 't1',
+      prop1: 't1',
       p2: 't1',
       p3: {
-        p1: 'p3t1',
+        prop1: 'p3t1',
         p2: 'p3t1',
       },
     },
@@ -17,20 +17,20 @@ beforeEach(() => {
 
   obj2 = {
     objData: {
-      p1: 't2',
+      prop1: 't2',
       p2: 't2',
       p3: {
-        p1: 'p3t2',
+        prop1: 'p3t2',
         p2: 'p3t2',
       },
     },
   }
   obj3 = {
     objData: {
-      p1: 't3',
+      prop1: 't3',
       p2: 't3',
       p3: {
-        p1: 'p3t3',
+        prop1: 'p3t3',
         p2: 'p3t3',
       },
     },
@@ -46,7 +46,7 @@ describe('Merge objects partially', () => {
   })
   test('two objects - two paths', () => {
     const path1 = 'p2'
-    const path2 = 'p3.p1'
+    const path2 = 'p3.prop1'
 
     const r = mergeFilesPartial(
       [obj1 as FileData, obj2 as FileData],
@@ -58,7 +58,7 @@ describe('Merge objects partially', () => {
   })
   test('three objects - two paths', () => {
     const path1 = 'p2'
-    const path2 = 'p3.p1'
+    const path2 = 'p3.prop1'
     const path3 = 'newProp'
     obj2.objData[path3] = '2'
 
@@ -76,29 +76,29 @@ describe('Merge objects partially', () => {
     obj1 = {
       objData: {
         p3: {
-          p1: 'p3t1',
+          prop1: 'p3t1',
           p2: 'p3t1',
-          custom1: 't1',
+          customProp1: 't1',
         },
       },
     }
     obj2 = {
       objData: {
-        p1: 't2',
+        prop1: 't2',
         p2: 't2',
         p3: {
-          p1: 'p3t2',
+          prop1: 'p3t2',
           p2: 'p3t2',
-          custom2: 't2',
+          customProp2: 't2',
         },
       },
     }
     const expectedResult = {
       p3: {
-        p1: obj2.objData.p3.p1,
+        prop1: obj2.objData.p3.prop1,
         p2: obj2.objData.p3.p2,
-        custom1: obj1.objData.p3.custom1,
-        custom2: obj2.objData.p3.custom2,
+        customProp1: obj1.objData.p3.customProp1,
+        customProp2: obj2.objData.p3.customProp2,
       },
     }
     const path = 'p3'
@@ -109,7 +109,7 @@ describe('Merge objects partially', () => {
   })
   test('pass in empty objec as the first object', () => {
     const path1 = 'p2'
-    const path2 = 'p3.p1'
+    const path2 = 'p3.prop1'
     const obj1 = {
       objData: {},
     }
@@ -124,7 +124,7 @@ describe('Merge objects partially', () => {
   })
   test('first object does not have one of the paths', () => {
     const path1 = 'p2'
-    const path2 = 'p3.p1'
+    const path2 = 'p3.prop1'
     const path3 = 'newProp'
     obj2.objData[path3] = '2'
     obj3.objData[path3] = '3'
@@ -153,7 +153,7 @@ describe('Merge objects partially', () => {
   test('If one of the objects to be merged (execept first) does not have the path, throw', () => {
     //object 2 does not have path3
     const path1 = 'p2'
-    const path2 = 'p3.p1'
+    const path2 = 'p3.prop1'
     const path3 = 'newProp'
     obj3.objData[path3] = '3'
 
@@ -168,7 +168,7 @@ describe('Merge objects partially', () => {
   test('If "allowUndefined" is true, do not throw when one of the objects to be merged does not have the path', () => {
     //object 2 does not have path3
     const path1 = 'p2'
-    const path2 = 'p3.p1'
+    const path2 = 'p3.prop1'
     const path3 = 'newProp'
     obj3.objData[path3] = '3'
 

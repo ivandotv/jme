@@ -1,13 +1,13 @@
 {
-  "p1": {
+  "prop1": {
     "id": 1,
     "tags": [1, 2, 3],
-    "d1": {
-      "p1": "t1",
-      "custom1": "t1",
-      "dd1": {
-        "pp1": "t1",
-        "custom1": "t1"
+    "level1": {
+      "prop1": "t1",
+      "customProp1": "t1",
+      "level2": {
+        "prop1": "t1",
+        "customProp1": "t1"
       }
     }
   }

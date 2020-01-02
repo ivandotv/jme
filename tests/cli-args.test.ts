@@ -15,7 +15,7 @@ beforeEach(() => {
 })
 
 describe('CLI args', () => {
-  test('pass all arguments', () => {
+  test('pass and parse all arguments', () => {
     const filePath1 = 'path/to/files/test-1.json'
     const filePath2 = 'path/to/files/test-2.json'
     const mergePaths = 'data.p2.title,data.p3.tags'

@@ -22,87 +22,142 @@ describe('Full file merge', () => {
     const result = JSON.parse(mergeFiles([path1, path2]))
 
     expect(result.id).toBe(obj2.id)
-    expect(result.p1.d1.dd1.pp1).toBe(obj2.p1.d1.dd1.pp1)
-    expect(result.p1.d1.dd1.custom1).toBe(obj1.p1.d1.dd1.custom1)
-    expect(result.p1.d1.dd1.custom2).toBe(obj2.p1.d1.dd1.custom2)
+    expect(result.prop1.level1.level2.prop1).toBe(
+      obj2.prop1.level1.level2.prop1
+    )
+    expect(result.prop1.level1.level2.customProp1).toBe(
+      obj1.prop1.level1.level2.customProp1
+    )
+    expect(result.prop1.level1.level2.customProp2).toBe(
+      obj2.prop1.level1.level2.customProp2
+    )
   })
 
   test('merge three files', () => {
     const result = JSON.parse(mergeFiles([path1, path2, path3]))
 
     expect(result.id).toBe(obj3.id)
-    expect(result.p1.d1.dd1.pp1).toBe(obj3.p1.d1.dd1.pp1)
-    expect(result.p1.d1.dd1.custom1).toBe(obj1.p1.d1.dd1.custom1)
-    expect(result.p1.d1.dd1.custom2).toBe(obj2.p1.d1.dd1.custom2)
-    expect(result.p1.d1.dd1.custom3).toBe(obj3.p1.d1.dd1.custom3)
+    expect(result.prop1.level1.level2.prop1).toBe(
+      obj3.prop1.level1.level2.prop1
+    )
+    expect(result.prop1.level1.level2.customProp1).toBe(
+      obj1.prop1.level1.level2.customProp1
+    )
+    expect(result.prop1.level1.level2.customProp2).toBe(
+      obj2.prop1.level1.level2.customProp2
+    )
+    expect(result.prop1.level1.level2.customProp3).toBe(
+      obj3.prop1.level1.level2.customProp3
+    )
   })
 })
 describe('Partial file merge', () => {
   test(' merge two files', () => {
-    const result = JSON.parse(mergeFiles([path1, path2], ['p1.d1']))
+    const result = JSON.parse(mergeFiles([path1, path2], ['prop1.level1']))
 
     expect(result.id).toBe(obj1.id)
-    expect(result.p1.d1.dd1.pp1).toBe(obj2.p1.d1.dd1.pp1)
-    expect(result.p1.d1.dd1.custom1).toBe(obj1.p1.d1.dd1.custom1)
-    expect(result.p1.d1.dd1.custom2).toBe(obj2.p1.d1.dd1.custom2)
+    expect(result.prop1.level1.level2.prop1).toBe(
+      obj2.prop1.level1.level2.prop1
+    )
+    expect(result.prop1.level1.level2.customProp1).toBe(
+      obj1.prop1.level1.level2.customProp1
+    )
+    expect(result.prop1.level1.level2.customProp2).toBe(
+      obj2.prop1.level1.level2.customProp2
+    )
   })
 
   test(' merge two files with multiple paths', () => {
     const result = JSON.parse(
-      mergeFiles([path1, path2], ['p1.d1.p1', 'p1.d1.dd1'])
+      mergeFiles([path1, path2], ['prop1.level1.prop1', 'prop1.level1.level2'])
     )
 
     expect(result.id).toBe(obj1.id)
-    expect(result.p1.d1.p1).toBe(obj2.p1.d1.p1)
-    expect(result.p1.d1.dd1.pp1).toBe(obj2.p1.d1.dd1.pp1)
-    expect(result.p1.d1.dd1.custom1).toBe(obj1.p1.d1.dd1.custom1)
-    expect(result.p1.d1.dd1.custom2).toBe(obj2.p1.d1.dd1.custom2)
+    expect(result.prop1.level1.prop1).toBe(obj2.prop1.level1.prop1)
+    expect(result.prop1.level1.level2.prop1).toBe(
+      obj2.prop1.level1.level2.prop1
+    )
+    expect(result.prop1.level1.level2.customProp1).toBe(
+      obj1.prop1.level1.level2.customProp1
+    )
+    expect(result.prop1.level1.level2.customProp2).toBe(
+      obj2.prop1.level1.level2.customProp2
+    )
   })
   test('merge three files', () => {
-    const result = JSON.parse(mergeFiles([path1, path2, path3], ['p1.d1']))
+    const result = JSON.parse(
+      mergeFiles([path1, path2, path3], ['prop1.level1'])
+    )
 
     expect(result.id).toBe(obj1.id)
-    expect(result.p1.d1.dd1.pp1).toBe(obj3.p1.d1.dd1.pp1)
-    expect(result.p1.d1.dd1.custom1).toBe(obj1.p1.d1.dd1.custom1)
-    expect(result.p1.d1.dd1.custom2).toBe(obj2.p1.d1.dd1.custom2)
-    expect(result.p1.d1.dd1.custom3).toBe(obj3.p1.d1.dd1.custom3)
+    expect(result.prop1.level1.level2.prop1).toBe(
+      obj3.prop1.level1.level2.prop1
+    )
+    expect(result.prop1.level1.level2.customProp1).toBe(
+      obj1.prop1.level1.level2.customProp1
+    )
+    expect(result.prop1.level1.level2.customProp2).toBe(
+      obj2.prop1.level1.level2.customProp2
+    )
+    expect(result.prop1.level1.level2.customProp3).toBe(
+      obj3.prop1.level1.level2.customProp3
+    )
   })
   test('merge three files - with multiple paths', () => {
     const result = JSON.parse(
-      mergeFiles([path1, path2, path3], ['p1.d1.p1', 'p1.d1.dd1'])
+      mergeFiles(
+        [path1, path2, path3],
+        ['prop1.level1.prop1', 'prop1.level1.level2']
+      )
     )
 
     expect(result.id).toBe(obj1.id)
-    expect(result.p1.d1.p1).toBe(obj3.p1.d1.p1)
-    expect(result.p1.d1.dd1.pp1).toBe(obj3.p1.d1.dd1.pp1)
-    expect(result.p1.d1.dd1.custom1).toBe(obj1.p1.d1.dd1.custom1)
-    expect(result.p1.d1.dd1.custom2).toBe(obj2.p1.d1.dd1.custom2)
-    expect(result.p1.d1.dd1.custom3).toBe(obj3.p1.d1.dd1.custom3)
+    expect(result.prop1.level1.prop1).toBe(obj3.prop1.level1.prop1)
+    expect(result.prop1.level1.level2.prop1).toBe(
+      obj3.prop1.level1.level2.prop1
+    )
+    expect(result.prop1.level1.level2.customProp1).toBe(
+      obj1.prop1.level1.level2.customProp1
+    )
+    expect(result.prop1.level1.level2.customProp2).toBe(
+      obj2.prop1.level1.level2.customProp2
+    )
+    expect(result.prop1.level1.level2.customProp3).toBe(
+      obj3.prop1.level1.level2.customProp3
+    )
   })
 })
 describe('Partial file merge - with override', () => {
   test('merge two files', () => {
     const result = JSON.parse(
-      mergeFiles([path1, path2], ['p1.d1'], false, true)
+      mergeFiles([path1, path2], ['prop1.level1'], false, true)
     )
     expect(result.id).toBe(obj1.id)
-    expect(result.p1.d1.custom1).toBeUndefined()
-    expect(result.p1.d1.dd1.custom1).toBeUndefined()
-    expect(result.p1.d1.dd1.pp1).toBe(obj2.p1.d1.dd1.pp1)
-    expect(result.p1.d1.dd1.custom2).toBe(obj2.p1.d1.dd1.custom2)
+    expect(result.prop1.level1.customProp1).toBeUndefined()
+    expect(result.prop1.level1.level2.customProp1).toBeUndefined()
+    expect(result.prop1.level1.level2.prop1).toBe(
+      obj2.prop1.level1.level2.prop1
+    )
+    expect(result.prop1.level1.level2.customProp2).toBe(
+      obj2.prop1.level1.level2.customProp2
+    )
   })
   test('merge three files', () => {
     const result = JSON.parse(
-      mergeFiles([path1, path2, path3], ['p1.d1'], false, true)
+      mergeFiles([path1, path2, path3], ['prop1.level1'], false, true)
     )
     expect(result.id).toBe(obj1.id)
-    expect(result.p1.d1.custom1).toBeUndefined()
-    expect(result.p1.d1.dd1.custom1).toBeUndefined()
-    expect(result.p1.d1.custom2).toBe(obj2.p1.d1.custom2)
-    expect(result.p1.d1.dd1.custom2).toBe(obj2.p1.d1.dd1.custom2)
-    expect(result.p1.d1.dd1.pp1).toBe(obj3.p1.d1.dd1.pp1)
-    expect(result.p1.d1.custom3).toBe(obj3.p1.d1.custom3)
-    expect(result.p1.d1.p1).toBe(obj3.p1.d1.p1)
+    expect(result.prop1.level1.customProp1).toBeUndefined()
+    expect(result.prop1.level1.level2.customProp1).toBeUndefined()
+    expect(result.prop1.level1.customProp2).toBe(obj2.prop1.level1.customProp2)
+    expect(result.prop1.level1.level2.customProp2).toBe(
+      obj2.prop1.level1.level2.customProp2
+    )
+    expect(result.prop1.level1.level2.prop1).toBe(
+      obj3.prop1.level1.level2.prop1
+    )
+    expect(result.prop1.level1.customProp3).toBe(obj3.prop1.level1.customProp3)
+    expect(result.prop1.level1.prop1).toBe(obj3.prop1.level1.prop1)
   })
 
   test('two files - if path does not exist return the first file ', () => {
