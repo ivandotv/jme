@@ -1,4 +1,5 @@
 version: 2.1
+working_directory: ~/repo
 orbs:
   codecov: codecov/codecov@1.0.2
 jobs:
@@ -37,7 +38,7 @@ commands:
             mkdir -p ./reports/junit
             npm run ci:test
       - store_test_results:
-          path: reports/junit/
+          path: ./reports/junit/
   setup-coverage:
     steps:
       - codecov/upload:
