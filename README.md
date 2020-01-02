@@ -33,15 +33,15 @@ Given these files:
 ```js
 // test-1.json
 {
-  "p1": {
+  "prop1": {
     "id": 1,
     "tags": [1, 2, 3],
-    "d1": {
-      "p1": "t1",
-      "custom1": "t1",
-      "dd1": { // override this path with the same path from the other files.
-        "pp1": "t1",
-        "custom1": "t1"
+    "level1": {
+      "prop1": "t1",
+      "customProp1": "t1",
+      "level2": { // override this path with the same path from the other files.
+        "prop1": "t1",
+        "customProp1": "t1"
       }
     }
   }
@@ -50,41 +50,41 @@ Given these files:
 
 // test-2.json
 {
-  "p1": {
+  "prop1": {
     "id": 2,
     "tags": [4, 5, 6],
-    "d1": {
-      "p1": "t2",
-      "custom2": "t2",
-      "dd1": { //merge only this path
-        "pp1": "t2",
-        "custom2": "t2"
+    "level1": {
+      "prop1": "t2",
+      "customProp2": "t2",
+      "level2": { //merge only this path
+        "prop1": "t2",
+        "customProp2": "t2"
       }
     }
   }
 }
 ```
 
-You can choose to merge only a part of the file (in this case `p1.d1.dd1`)
+You can choose to merge only a part of the file (in this case `prop1.level1.level2`)
 
 ```bash
-jme test-1.json test-2.json -p 'p1.d1.dd1'
+jme test-1.json test-2.json -p 'prop1.level1.level2'
 ```
 
 result:
 
 ```js
 {
-  "p1": {
+  "prop1": {
     "id": 1,
     "tags": [1, 2, 3],
-    "d1": {
-      "p1": "t1",
-      "custom1": "t1",
-      "dd1": {       //only this path 'p1.d1.dd1' is merged
-        "pp1": "t2" // comes from test-2.json
-        "custom2": "t2",// comes from test-2.json
-        "custom1": "t1" // comes from test-1.json
+    "level1": {
+      "prop1": "t1",
+      "customProp1": "t1",
+      "level2": {       //only this path 'prop1.level1.level2' is merged
+        "prop1": "t2" // comes from test-2.json
+        "customProp2": "t2",// comes from test-2.json
+        "customProp1": "t1" // comes from test-1.json
       }
     }
   }
@@ -92,7 +92,7 @@ result:
 
 ```
 
-You can partially merge multiple paths, just make sure to separate then with comma `-p 'p1.d1.dd1,some.other.path,yet.some.other.path'`
+You can partially merge multiple paths, just make sure to separate then with comma `-p 'prop1.level1.level2,some.other.path,yet.some.other.path'`
 
 If the `path` does not exist in one of the files program will report an error and the merge process will not be executed. However, you can pass an additional flag `-u` or `--allow-undefined` to allow `undefined` paths in the files. In that case, if the `path` does not exist in the file, that file will be skipped for that particular `path`.
 
@@ -105,5 +105,5 @@ In the next example chosen `path` will be merged from `test-3.json` into `test-2
 Example:
 
 ```bash
-jme test-1.json test-2.json test-3.json --path 'p1.d1.dd1' --override
+jme test-1.json test-2.json test-3.json --path 'prop1.level1.level2' --override
 ```
