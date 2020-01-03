@@ -14,12 +14,8 @@ jobs:
     steps:
       - test
       - store-artifacts
-      - setup-coverage
+      - upload-coverage
 commands:
-  store-artifacts:
-    steps:
-      - store_artifacts:
-          path: coverage
   test:
     steps:
       - checkout
@@ -39,7 +35,11 @@ commands:
             npm run ci:test
       - store_test_results:
           path: ./reports/junit/
-  setup-coverage:
+  store-artifacts:
+    steps:
+      - store_artifacts:
+          path: coverage
+  upload-coverage:
     steps:
       - codecov/upload:
           file: coverage/coverage-final.json
