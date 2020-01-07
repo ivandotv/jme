@@ -15,6 +15,11 @@ jobs:
       - test
       - store-artifacts
       - upload-coverage
+  node-v13:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - test
 commands:
   test:
     steps:
@@ -23,11 +28,11 @@ commands:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: install-dependancies
-          command: npm install
+          command: npm ci
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
-            - ./node_modules
+            - $HOME/.npm
       - run:
           name: unit test
           command: |
@@ -49,3 +54,4 @@ workflows:
     jobs:
       - node-v10
       - node-v12
+      - node-v13
