@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-'use strict'
 
 import { main } from './main'
 import commander from 'commander'
