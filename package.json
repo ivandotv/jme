@@ -22,7 +22,7 @@
     "build:watch": "tsc --watch",
     "test": "jest --verbose --coverage --no-cache",
     "test:watch": "jest --watch",
-    "ci:test": "jest --runInBand --reporters=default --reporters=jest-junit --coverage --coverageDirectory=coverage"
+    "ci:test": "jest --runInBand --reporters=default --coverage --coverageDirectory=coverage"
   },
   "repository": {
     "type": "git",
@@ -53,10 +53,6 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     }
-  },
-  "jest-junit": {
-    "outputDirectory": "./reports/junit",
-    "outputName": "js-test-results.xml"
   },
   "husky": {
     "hooks": {
