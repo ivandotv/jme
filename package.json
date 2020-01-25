@@ -17,8 +17,8 @@
   "scripts": {
     "prepublishOnly": "npm run build && npm run test",
     "build": "run-script-os",
-    "build:nix": "del lib && tsc && chmod a+x ./lib/index.js",
-    "build:win32": "del lib && tsc",
+    "build:nix": "del lib && del .buildcache && tsc && chmod a+x ./lib/index.js",
+    "build:win32": "del lib && del .buildcache && tsc",
     "build:watch": "tsc --watch",
     "test": "jest --verbose --coverage --no-cache",
     "test:watch": "jest --watch",
