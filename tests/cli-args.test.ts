@@ -12,7 +12,6 @@ beforeEach(() => {
   jest.clearAllMocks()
   args = ['node_exec', 'path_to_file']
   program = new commander.Command()
-  // program = new commander.Command()
 })
 
 describe('CLI args', () => {

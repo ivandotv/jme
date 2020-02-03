@@ -54,6 +54,10 @@
       "^.+\\.tsx?$": "ts-jest"
     }
   },
+  "jest-junit": {
+    "outputDirectory": "./reports/junit",
+    "outputName": "test-results.xml"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
