@@ -1,5 +1,6 @@
 node_modules
 /coverage
+/reports
 /lib
 /.buildcache
 /.vscode/settings.json
