@@ -98,7 +98,7 @@
   },
   "dependencies": {
     "chalk": "^3.0.0",
-    "commander": "^4.0.1",
+    "commander": "^5.0.0",
     "deep-extend": "^0.6.0",
     "set-value": "^3.0.1",
     "undefsafe": "^2.0.2"
