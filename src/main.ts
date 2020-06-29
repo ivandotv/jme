@@ -1,5 +1,5 @@
 import { mergeFiles } from './mergeFiles'
-import { Command } from 'commander'
+import commander from 'commander'
 import path from 'path'
 
 /**
@@ -9,7 +9,7 @@ import path from 'path'
  * @param {string[]} args
  * @param {Command} program
  */
-export function main(args: string[], program: Command): void {
+export function main(args: string[], program: commander.Command): void {
   program
     .version('1.0.0')
     .option(
