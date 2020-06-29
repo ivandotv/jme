@@ -2,6 +2,7 @@ import { main } from '../src/main'
 import commander from 'commander'
 import { mergeFiles } from '../src/mergeFiles'
 import path from 'path'
+import fs from 'fs'
 
 global.console.log = () => {}
 jest.mock('../src/mergeFiles')
@@ -35,12 +36,25 @@ describe('CLI args', () => {
       true
     )
   })
-  test('if no arguments, show help', () => {
+  test('if no arguments are passed, show program help', () => {
     // @ts-ignore
     program.help = jest.fn()
 
     main(args, program)
 
     expect(program.help).toBeCalled()
+  })
+  test('Version number is the same as the package.json version number', () => {
+    const version = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, '../package.json')).toString()
+    ).version
+
+    program.exitOverride()
+
+    args.push('--version')
+
+    expect(() => {
+      main(args, program)
+    }).toThrow(version)
   })
 })

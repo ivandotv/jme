@@ -1,6 +1,7 @@
 import { mergeFiles } from './mergeFiles'
 import commander from 'commander'
 import path from 'path'
+import fs from 'fs'
 
 /**
  * Entry point for the application
@@ -11,7 +12,11 @@ import path from 'path'
  */
 export function main(args: string[], program: commander.Command): void {
   program
-    .version('1.0.0')
+    .version(
+      JSON.parse(
+        fs.readFileSync(path.resolve(__dirname, '../package.json')).toString()
+      ).version
+    )
     .option(
       '-p, --path [paths]',
       'Partial merging by using specific object paths. Separate paths by comma.',
