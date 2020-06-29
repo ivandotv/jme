@@ -1,6 +1,7 @@
-const path = require('path')
+import path from 'path'
+import fs from 'fs'
 
-const fs = jest.genMockFromModule('fs')
+const fsMock = jest.genMockFromModule<typeof fs>('fs')
 
 const MOCK_FILES = {
   'path/to/files/test-1.json': JSON.stringify(
@@ -16,7 +17,8 @@ const MOCK_FILES = {
 }
 
 let mockFiles = Object.create(null)
-function __setMockFiles(newMockFiles) {
+
+function __setMockFiles(newMockFiles: { [key: string]: string }): void {
   mockFiles = Object.create(null)
   for (const file in newMockFiles) {
     const dir = path.dirname(file)
@@ -28,8 +30,7 @@ function __setMockFiles(newMockFiles) {
   }
 }
 
-function readFileSync(filePath) {
-  const r = mockFiles[filePath]
+function readFileSync(filePath: string): void {
   const dir = path.dirname(filePath)
   const file = path.basename(filePath)
   if (mockFiles[dir] && mockFiles[dir][file]) return mockFiles[dir][file]
@@ -37,7 +38,6 @@ function readFileSync(filePath) {
 }
 
 __setMockFiles(MOCK_FILES)
+;(fsMock as any).readFileSync = readFileSync
 
-fs.__setMockFiles = __setMockFiles
-fs.readFileSync = readFileSync
-module.exports = fs
+module.exports = fsMock
