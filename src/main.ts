@@ -56,5 +56,5 @@ function parsePartialPathOptions(paths: string): string[] {
  * @returns {string[]}
  */
 export function resolveFilePathOptions(paths: string[]): string[] {
-  return paths.map(p => path.resolve(p))
+  return paths.map((p) => path.resolve(p))
 }
