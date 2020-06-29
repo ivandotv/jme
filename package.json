@@ -1,6 +1,6 @@
 {
   "name": "jme",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Fully or partially merge JSON objects from the command line",
   "main": "lib/index.js",
   "types": "lib/",
