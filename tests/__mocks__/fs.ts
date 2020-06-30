@@ -1,6 +1,8 @@
 import path from 'path'
 import fs from 'fs'
 
+// https://jestjs.io/docs/en/manual-mocks#examples
+
 const fsMock = jest.genMockFromModule<typeof fs>('fs')
 
 const MOCK_FILES = {
