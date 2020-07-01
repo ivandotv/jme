@@ -2,7 +2,7 @@ import setValue from 'set-value'
 // @ts-ignore
 import undefSafe from 'undefsafe'
 import { FileData } from './prepareFiles'
-import deepExtend = require('deep-extend')
+import deepExtend from 'deep-extend'
 
 //TODO -root array is not supported yet
 //https://stackoverflow.com/questions/3833299/can-an-array-be-top-level-json-text
