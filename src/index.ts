@@ -6,9 +6,9 @@ import chalk from 'chalk'
 
 process.on('uncaughtException', (e) => {
   if (typeof e.message !== 'undefined') {
-    console.log(chalk.bold.red(e.message))
+    console.error(chalk.bold.red(e.message))
   } else {
-    console.log(e)
+    console.error(e)
   }
   process.exit(1)
 })
