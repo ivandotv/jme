@@ -91,7 +91,7 @@
     "prettier": "^2.0.5",
     "run-script-os": "^1.1.1",
     "standardx": "^7.0.0",
-    "ts-jest": "^26.1.1",
+    "ts-jest": "^27.0.0",
     "typescript": "^4.0.0"
   },
   "dependencies": {
