@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ivandotv/jm.git"
+    "url": "git+https://github.com/ivandotv/jme.git"
   },
   "keywords": [
     "json",
@@ -42,9 +42,9 @@
   "author": "Ivan Vlatkovic",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ivandotv/jm/issues"
+    "url": "https://github.com/ivandotv/jme/issues"
   },
-  "homepage": "https://github.com/ivandotv/jm#readme",
+  "homepage": "https://github.com/ivandotv/jme#readme",
   "jest": {
     "watchPlugins": [
       "jest-watch-typeahead/filename",
@@ -89,7 +89,7 @@
     "jest-watch-typeahead": "^0.6.0",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
-    "run-script-os": "^1.1.1",
+    "run-script-os": "^1.1.6",
     "standardx": "^7.0.0",
     "ts-jest": "^26.1.1",
     "typescript": "^4.0.0"
